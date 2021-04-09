@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public GameObject LevelUI;
 
     public GameObject PauseUI;
+    
+    public GameObject HTPUI;
 
     public GameObject GameOverUI;
 
@@ -19,10 +21,17 @@ public class GameManager : MonoBehaviour
         LevelUI.SetActive(true);
     }
 
+    public void HTPButton()
+    {
+        StartUI.SetActive(false);
+        HTPUI.SetActive(true);
+    }
+
     public void BackButton()
     {
         StartUI.SetActive(true);
         LevelUI.SetActive(false);
+        HTPUI.SetActive(false);
     }
 
     public void PauseButton()

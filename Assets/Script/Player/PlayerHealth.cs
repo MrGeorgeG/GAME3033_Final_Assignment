@@ -8,6 +8,9 @@ public class PlayerHealth : MonoBehaviour
     public int startingHealth = 100;
     public int currentHealth;
     public Slider healthSlider;
+    public int firstAIDNumber;
+    public int Number = 0;
+    public Text firstAIDText;
     public Image damageImage;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
@@ -27,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
         currentHealth = startingHealth;
+        firstAIDNumber = Number;
     }
 
     // Update is called once per frame
@@ -41,6 +45,32 @@ public class PlayerHealth : MonoBehaviour
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
         damaged = false;
+        firstAIDText.text = "x " + firstAIDNumber;
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if(currentHealth < startingHealth && firstAIDNumber > 0)
+            {
+                TakeHealth();
+            }
+        }
+    }
+
+    public void TakeHealth()
+    {
+        firstAIDNumber -= 1;
+
+        currentHealth += 20;
+
+        healthSlider.value = currentHealth;
+
+        if (currentHealth >= startingHealth)
+        {
+            currentHealth = startingHealth;
+        }
+
+        playerAudio.Play();
+
     }
 
     public void TakeDamage(int amount)
@@ -56,6 +86,15 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth <= 0 && !isDead)
         {
             Death();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Health" && firstAIDNumber < 3)
+        {
+            Destroy(other.gameObject);
+            firstAIDNumber += 1;
         }
     }
 

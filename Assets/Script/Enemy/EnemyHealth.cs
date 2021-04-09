@@ -11,6 +11,9 @@ public class EnemyHealth : MonoBehaviour
     public int scoreValue = 10;
     public AudioClip deathClip;
 
+    public GameObject ironBar;
+    public Transform spawnitem;
+
     private Animator anim;
     private AudioSource enemyAudio;
     private ParticleSystem hitParticles;
@@ -56,14 +59,22 @@ public class EnemyHealth : MonoBehaviour
 
     private void Death()
     {
+        int radom = Random.Range(0, 100);
+
         isDead = true;
 
         capsuleCollider.isTrigger = true;
 
         anim.SetTrigger("Dead");
+        if(radom >50 && radom < 70)
+        {
+            Instantiate(ironBar, spawnitem.position, spawnitem.rotation);
+
+        }
 
         enemyAudio.clip = deathClip;
-        enemyAudio.Play();
+        enemyAudio.Play(); 
+        ScoreManager.score += scoreValue;
     }
 
     public void StartSinking()
@@ -71,7 +82,6 @@ public class EnemyHealth : MonoBehaviour
         GetComponent<NavMeshAgent>().enabled = false;
         GetComponent<Rigidbody>().isKinematic = true;
         isSinking = true;
-        ScoreManager.score += scoreValue;
         Destroy(gameObject, 2f);
     }
 }

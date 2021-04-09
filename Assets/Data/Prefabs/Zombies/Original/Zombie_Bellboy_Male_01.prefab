@@ -3569,6 +3569,8 @@ MonoBehaviour:
   sinkSpeed: 2.5
   scoreValue: 10
   deathClip: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}
+  ironBar: {fileID: 4562335159759292634, guid: ccb30b120cacd44439b76e5c38c9cf06, type: 3}
+  spawnitem: {fileID: 4243538704547566}
 --- !u!114 &623602148
 MonoBehaviour:
   m_ObjectHideFlags: 0
