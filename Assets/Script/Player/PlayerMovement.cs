@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 6f;
+
+    public static bool GameIsPaused = false;
+
+    public GameManager GM;
+
+    private bool isGround = false;
 
     private Vector3 movement;
     public Animator anim;
@@ -17,6 +24,25 @@ public class PlayerMovement : MonoBehaviour
     {
         floorMask = LayerMask.GetMask("Floor");
         anim = GetComponent<Animator>();
+
+        playerRigidbody = GetComponent<Rigidbody>();
+    }
+    
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (GameIsPaused == false)
+            {
+                GM.PauseButton();
+                GameIsPaused = true;
+            }
+            else
+            {
+                GM.QuitPauseButton();
+                GameIsPaused = false;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -24,12 +50,15 @@ public class PlayerMovement : MonoBehaviour
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
+
         anim.SetFloat("Forward", v);
         anim.SetFloat("Turn", h);
 
         Move(h, v);
         Turning();
         Animating();
+
+        
     }
 
     private void Move(float h, float v)
@@ -69,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Animating()
     {
-        
         
         foreach (var chilAnimator in GetComponentsInChildren<Animator>())
         {

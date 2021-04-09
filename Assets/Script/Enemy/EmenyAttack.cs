@@ -35,6 +35,7 @@ public class EmenyAttack : MonoBehaviour
         if(other.gameObject == player)
         {
             playerInRange = false;
+            anim.SetBool("Attack", false);
         }
     }
 
@@ -42,13 +43,13 @@ public class EmenyAttack : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
-        if(timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
+        if (timer >= timeBetweenAttacks && playerInRange && enemyHealth.currentHealth > 0)
         {
             Attack();
         }
         if (playerHealth.currentHealth <= 0)
         {
+            anim.SetBool("Attack", false);
             anim.SetTrigger("playerDead");
         }
     }
@@ -58,6 +59,7 @@ public class EmenyAttack : MonoBehaviour
         timer = 0f;
         if (playerHealth.currentHealth > 0)
         {
+            anim.SetBool("Attack", true);
             playerHealth.TakeDamage(attackDamage);
         }
     }
