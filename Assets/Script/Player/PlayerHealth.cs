@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     public int Number = 0;
     public Text firstAIDText;
     public Image damageImage;
+    public AudioClip GetClip;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
@@ -95,6 +96,9 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(other.gameObject);
             firstAIDNumber += 1;
+
+            playerAudio.clip = GetClip;
+            playerAudio.Play();
         }
     }
 
