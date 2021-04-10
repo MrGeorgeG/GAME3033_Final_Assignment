@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public Text firstAIDText;
     public Image damageImage;
     public AudioClip GetClip;
+    public AudioClip HitClip;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
@@ -70,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = startingHealth;
         }
 
-        playerAudio.Play();
+        //playerAudio.Play();
 
     }
 
@@ -82,6 +83,7 @@ public class PlayerHealth : MonoBehaviour
 
         healthSlider.value = currentHealth;
 
+        playerAudio.clip = HitClip;
         playerAudio.Play();
 
         if(currentHealth <= 0 && !isDead)

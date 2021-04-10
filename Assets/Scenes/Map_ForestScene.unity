@@ -265,6 +265,7 @@ MonoBehaviour:
   StartUI: {fileID: 0}
   LevelUI: {fileID: 0}
   PauseUI: {fileID: 788534012837278102}
+  HTPUI: {fileID: 0}
   GameOverUI: {fileID: 1379249076234303312}
 --- !u!1 &830000829
 GameObject:
@@ -2948,6 +2949,22 @@ PrefabInstance:
       propertyPath: GM
       value: 
       objectReference: {fileID: 632342493}
+    - target: {fileID: 5694852349263143176, guid: d011cebe7b8905745946c311bee78000, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694852349263143176, guid: d011cebe7b8905745946c311bee78000, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5694852349263143180, guid: d011cebe7b8905745946c311bee78000, type: 3}
+      propertyPath: GetClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c5e2f09db41d806479b99c89ee038b2d, type: 3}
+    - target: {fileID: 5694852349263143180, guid: d011cebe7b8905745946c311bee78000, type: 3}
+      propertyPath: HitClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9922a12f34d0a084aab32de985459723, type: 3}
     - target: {fileID: 5694852349263143180, guid: d011cebe7b8905745946c311bee78000, type: 3}
       propertyPath: damageImage
       value: 
